@@ -27,7 +27,27 @@ export function getInterview(state, interview) {
   }
   const id = interview.interviewer;
   const interviewer = state.interviewers[id];
+  const student = interview.student;
 
-  return {...interview, interviewer};
+  return {student, interviewer};
   
+}
+
+export function getInterviewersForDay(state, day) {
+
+  const daysObj = state.days.filter(days => days.name === day);
+  // console.log('DAYS OBJ', daysObj);
+  // console.log('STATE', state)
+  const interviewerObjectsArray = [];
+  if (daysObj.length === 0) {
+    return interviewerObjectsArray; 
+  }
+  else {
+    for (let i = 0; i < daysObj[0].interviewers.length; i++) {
+      interviewerObjectsArray.push(state.interviewers[daysObj[0].interviewers[i]])
+    }
+    // console.log(apptObjectsArray);
+    return (interviewerObjectsArray);
+  }
+
 }

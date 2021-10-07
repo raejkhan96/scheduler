@@ -14,7 +14,7 @@ export default function useVisualMode(initial) {
     if (replace === true) {
       setMode(mode);
       setHistory([...history.slice(0,-1), mode])
-      console.log('HISTORY 3', history)
+      // console.log('HISTORY 3', history)
     } else {
       setMode(mode);
       setHistory([...history, mode])
@@ -25,18 +25,18 @@ export default function useVisualMode(initial) {
   
   // back should set the mode to the previous item in our history array
   function back() {
-    console.log('MODE 2:', mode)
-    console.log('HISTORY', history)
+    // console.log('MODE 2:', mode)
+    // console.log('HISTORY', history)
 
     if (history.length > 1) {
       setHistory([...history.slice(0,-1)])
-      console.log('HISTORY 2', history)
+      // console.log('HISTORY 2', history)
       setMode(history[history.length-2])
     }
     
   }
 
-  console.log('MODE 1 : ', mode);
+  // console.log('MODE 1 : ', mode);
   
   return { mode, transition, back};
 

@@ -4,7 +4,7 @@ import React from "react";
 import "components/Appointment/styles.scss"
 
 export default function onAdd(props) {
-  console.log('ONADD ', props)
+  // console.log('ONADD ', props)
   return ( 
     <main className="appointment__add">
       <img 

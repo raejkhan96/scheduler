@@ -6,7 +6,7 @@ import DayList from "./DayList";
 import "components/Appointment"
 import Appointment from "components/Appointment";
 
-import { getAppointmentsForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 // const appointments= [
 //   {
@@ -122,6 +122,7 @@ export default function Application(props) {
   });
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+  const interviewersArray = getInterviewersForDay(state, state.day);
 
   const setDay = day => setState({ ...state, day });
   // const setDays = days => setState(prev => ({ ...prev, days }));
@@ -142,10 +143,14 @@ export default function Application(props) {
 
   // FIX: state.appointments.map is not a function
   const appointmentList = dailyAppointments.map((appointment) => {
+    const interview = getInterview(state, appointment.interview)
+    console.log('INTERVIEW ', interview);
     return (
     <Appointment
       key={appointment.id}
       {...appointment}
+      interviewers={interviewersArray}
+      interview={interview}
     />
     )
   })
