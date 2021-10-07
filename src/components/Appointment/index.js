@@ -1,11 +1,8 @@
 import React from "react";
-// import classNames from 'classnames';
-// import "components/Button.scss";
 import "components/Appointment/styles.scss";
 import Header from "components/Appointment/Header.js"
 import Show from "components/Appointment/Show.js"
-// // Empty has function onAdd
-import Empty from "components/Appointment/Empty.js"
+import Empty from "components/Appointment/Empty.js" // // Empty has function onAdd
 import "components/Appointment/styles.scss"
 import Form from "components/Appointment/Form.js"
 import useVisualMode from "hooks/useVisualMode";
@@ -18,10 +15,8 @@ const CREATE = "CREATE";
 
 export default function Appointment(props) {
 
-  // Should this function be outside?
 
-  // The Form should capture the name and interviewer and pass them to props.onSave 
-  // as arguments
+  // The Form should capture the name and interviewer and pass them to props.onSave as arguments
   //  We then create a new interview object to be passed to props.bookInterview.
   function save(name, interviewer) {
     const interview = {

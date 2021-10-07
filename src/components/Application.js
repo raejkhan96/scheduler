@@ -1,66 +1,14 @@
 import React, { useState, useEffect} from "react";
 import axios from 'axios';
-
 import "components/Application.scss";
 import DayList from "./DayList";
 import "components/Appointment"
 import Appointment from "components/Appointment";
-
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
-
-// const appointments= [
-//   {
-//     id: 1,
-//     time: "12pm",
-//   },
-//   {
-//     id: 2,
-//     time: "1pm",
-//     interview: {
-//       student: "Lydia Miller-Jones",
-//       interviewer: {
-//         id: 1,
-//         name: "Sylvia Palmer",
-//         avatar: "https://i.imgur.com/LpaY82x.png",
-//       }
-//     }
-//   },
-//   {
-//     id: 3,
-//     time: "2pm",
-//     interview: {
-//       student: "John Doe",
-//       interviewer: {
-//         id: 1,
-//         name: "Sylvia Palmer",
-//         avatar: "https://i.imgur.com/LpaY82x.png",
-//       }
-//     }
-//   },
-//   {
-//     id: 4,
-//     time: "3pm",
-//   },
-//   {
-//     id: 5,
-//     time: "4pm",
-//     interview: {
-//       student: "Jane Doe",
-//       interviewer: {
-//         id: 1,
-//         name: "Sylvia Palmer",
-//         avatar: "https://i.imgur.com/LpaY82x.png",
-//       }
-//     }
-//   }
-// ]
-
 
 
 
 export default function Application(props) {
-  // const [day, setDay] = useState('Monday');
-  // const [days, setDays] = useState([]);
 
   const [state, setState] = useState({
     day: "Monday",
@@ -125,7 +73,6 @@ export default function Application(props) {
   const interviewersArray = getInterviewersForDay(state, state.day);
 
   const setDay = day => setState({ ...state, day });
-  // const setDays = days => setState(prev => ({ ...prev, days }));
 
   function bookInterview(id, interview) {
     console.log(id, interview);
@@ -143,7 +90,6 @@ export default function Application(props) {
     });
   }, []);
 
-  // console.log('STATE 3', state.interviewers);
 
   // FIX: state.appointments.map is not a function
   const appointmentList = dailyAppointments.map((appointment) => {

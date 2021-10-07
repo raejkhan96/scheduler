@@ -2,11 +2,8 @@ import React from "react";
 import classNames from 'classnames';
 import DayListItem from "./DayListItem";
 
-// import "components/Button.scss";
-
 export default function DayList(props) {
    
-
   const mapArray = props.days.map((day) => {
     console.log(day)
     return (
