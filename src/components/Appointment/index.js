@@ -7,6 +7,7 @@ import "components/Appointment/styles.scss"
 import Form from "components/Appointment/Form.js"
 import useVisualMode from "hooks/useVisualMode";
 import Status from "./Status";
+import Confirm from "./Confirm";
 
 // add within function?
 const EMPTY = "EMPTY";
@@ -14,6 +15,7 @@ const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVING = "SAVING";
 const DELETING = "DELETING";
+const DELETE_CONFIRM = "DELETE_CONFIRM";
 
 export default function Appointment(props) {
 
@@ -51,11 +53,12 @@ export default function Appointment(props) {
       <Show
         student={props.interview.student}
         interviewer={props.interview.interviewer}
-        onDelete={() => {cancel()}}
+        onDelete={() => {transition(DELETE_CONFIRM)}}
       />
       )} 
       {/*EMPTY MODE fills the calendar with the onAdd options */}
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
+      {mode === DELETE_CONFIRM && <Confirm message={"Are you sure you would like to delete?"} onCancel={() => back()} onConfirm={() => cancel()}/>}
       {/* Transition mode to SAVING */}
       {mode === SAVING && <Status message={"Saving..."} />}
       {mode === DELETING && <Status message={"Deleting..."} /> }
