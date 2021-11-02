@@ -11,6 +11,7 @@ import Confirm from "./Confirm";
 
 // add within function?
 const EMPTY = "EMPTY";
+const EDIT = "EDIT";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVING = "SAVING";
@@ -54,10 +55,11 @@ export default function Appointment(props) {
         student={props.interview.student}
         interviewer={props.interview.interviewer}
         onDelete={() => {transition(DELETE_CONFIRM)}}
-      />
+        onEdit = {() => {transition(EDIT)}} />
       )} 
       {/*EMPTY MODE fills the calendar with the onAdd options */}
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
+      {mode === EDIT && <Form interviewers = {props.interviewers} name = {props.interview.student} onCancel = {back} onSave = { save }/> }
       {mode === DELETE_CONFIRM && <Confirm message={"Are you sure you would like to delete?"} onCancel={() => back()} onConfirm={() => cancel()}/>}
       {/* Transition mode to SAVING */}
       {mode === SAVING && <Status message={"Saving..."} />}
