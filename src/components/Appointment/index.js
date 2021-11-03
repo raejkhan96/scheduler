@@ -70,7 +70,7 @@ export default function Appointment(props) {
       <Show
         student={props.interview.student}
         interviewer={props.interview.interviewer}
-        onDelete={() => {transition(DELETE_CONFIRM, true)}}
+        onDelete={() => {transition(DELETE_CONFIRM)}}
         onEdit = {() => {transition(EDIT)}} />
       )} 
       {/*EMPTY MODE fills the calendar with the onAdd options */}
