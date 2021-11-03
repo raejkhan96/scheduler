@@ -8,18 +8,21 @@ export default function useVisualMode(initial) {
   
   const [mode, setMode] = useState(initial);
   const [history, setHistory]  = useState([initial]);
-
+  console.log('HISTORY 1', history)
   // Transition adds the new mode to our history
   function transition(mode, replace = false) {
+    // console.log('MODE, HISTORY ',mode, history)
     if (replace === true) {
       setMode(mode);
-      setHistory([...history.slice(0,-1), mode])
+      // console.log('HISTORY: ', history.slice(0,-1))
+      setHistory(history => [...history.slice(0,-1), mode])
       // console.log('HISTORY 3', history)
     } else {
+      console.log('HERE')
       setMode(mode);
-      setHistory([...history, mode])
+      setHistory(history => [...history, mode])
     }
-    
+    // console.log('HISTORY: ', history)
   }
   
   

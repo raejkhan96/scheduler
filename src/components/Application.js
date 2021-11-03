@@ -105,9 +105,9 @@ export default function Application(props) {
           appointments,
         });
       })
-      .catch((err) => {
-        console.log("ERR", err);
-      });
+      // .catch((err) => {
+      //   console.log("ERR", err);
+      // });
   }
 
   function cancelInterview(id) {
@@ -128,9 +128,9 @@ export default function Application(props) {
           updatedAppointment,
         });
       })
-      .catch((err) => {
-        console.log("ERR", err);
-      });
+      // .catch((err) => {
+      //   console.log("ERR", err);
+      // });
   }
 
   useEffect(() => {
