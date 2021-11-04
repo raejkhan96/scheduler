@@ -82,8 +82,25 @@ export default function useApplicationData() {
     });
   }, []);
 
+  function updateSpots(appointments, day) {
+    
+    let spots = 0;
+    const appForDay = state.days.find(x => x.name === day).appointments
+
+    for (const app of appForDay) {
+      if (!appointments[app].interview) {
+        spots += 1;
+      }
+    }
+
+    const days = state.days.map(x => x.name === day ? {...x, spots} : x);
+
+    return days
+  }
 
   function bookInterview(id, interview) {
+
+    
     // id is appointment id
     // interview contains interviewer (number) and student name (string
   
@@ -97,6 +114,8 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment,
     };
+
+    const newDays = updateSpots(appointments, state.day);
 
     // setState({
     //   ...state,
@@ -113,6 +132,7 @@ export default function useApplicationData() {
         setState({
           ...state,
           appointments,
+          days: newDays
         });
       })
       // .catch((err) => {
@@ -124,10 +144,18 @@ export default function useApplicationData() {
 
     console.log('CANCEL INTERVIEW ')
     
+    // updated needs now to update the appointments array
     const updatedAppointment = {
       ...state.appointments[id],
       interview: null,
     };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: updatedAppointment,
+    };
+
+    const newDays = updateSpots(appointments, state.day);
 
     return axios
       .delete(`/api/appointments/${id}`, updatedAppointment)
@@ -135,7 +163,8 @@ export default function useApplicationData() {
         console.log("RES", res);
         setState({
           ...state,
-          updatedAppointment,
+          appointments: appointments,
+          days: newDays
         });
       })
       // .catch((err) => {
@@ -143,7 +172,7 @@ export default function useApplicationData() {
       // });
   }
   
-  
+ 
   return {state, setDay, bookInterview, cancelInterview};
 
 }
