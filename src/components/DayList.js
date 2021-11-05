@@ -11,6 +11,7 @@ export default function DayList(props) {
         // {...day}
         key={day.id}
         // name and spots are props required by Daylistitem
+        selected = {day.name === props.day}
         name={day.name}
         spots={day.spots}
         setDay={props.setDay}

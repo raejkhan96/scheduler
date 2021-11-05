@@ -6,8 +6,6 @@ import axios from "axios";
 
 export default function useApplicationData() {
   
-  const setDay = (day) => setState({ ...state, day });
-
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -66,6 +64,8 @@ export default function useApplicationData() {
     },
   });
 
+  const setDay = (day) => setState({ ...state, day });
+
   useEffect(() => {
     Promise.all([
       axios.get("/api/days"),
@@ -79,6 +79,7 @@ export default function useApplicationData() {
         appointments: all[1].data,
         interviewers: all[2].data,
       }));
+      console.log('STATE', state);
     });
   }, []);
 
@@ -100,11 +101,6 @@ export default function useApplicationData() {
 
   function bookInterview(id, interview) {
 
-    
-    // id is appointment id
-    // interview contains interviewer (number) and student name (string
-  
-
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
@@ -116,11 +112,6 @@ export default function useApplicationData() {
     };
 
     const newDays = updateSpots(appointments, state.day);
-
-    // setState({
-    //   ...state,
-    //   appointments
-    // })
 
     console.log("ID, INTERVIEW", id, interview);
     console.log("APPOINTMENT", appointment);
@@ -135,9 +126,7 @@ export default function useApplicationData() {
           days: newDays
         });
       })
-      // .catch((err) => {
-      //   console.log("ERR", err);
-      // });
+
   }
 
   function cancelInterview(id) {
@@ -167,9 +156,6 @@ export default function useApplicationData() {
           days: newDays
         });
       })
-      // .catch((err) => {
-      //   console.log("ERR", err);
-      // });
   }
   
  
