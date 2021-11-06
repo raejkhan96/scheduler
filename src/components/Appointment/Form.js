@@ -32,8 +32,8 @@ export default function Form(props) {
     } else if (!interviewer) {
       setError("You missed interviewer selection")
       return
-    } else if (name === "") {
-      setError("You missed writing a name")
+    } else if (name === "" || !name ) {
+      setError("Student name cannot be blank")
       return
     }
     
