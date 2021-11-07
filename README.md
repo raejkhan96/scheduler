@@ -2,6 +2,7 @@
 
 ## About
 The project is a React application that allows users to book and cancel interviews.
+Scheduler API Repo Link: https://github.com/raejkhan96/scheduler-api
 
 ## Screenshots
 !["This screeshot shows the basic display of how the interview scheduler should look."](https://github.com/raejkhan96/scheduler/blob/master/docs/interviewScheduler1.png?raw=true)
