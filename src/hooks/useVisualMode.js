@@ -11,25 +11,22 @@ export default function useVisualMode(initial) {
   console.log('HISTORY 1', history)
 
   function transition(mode, replace = false) {
-    // console.log('MODE, HISTORY ',mode, history)
+
     if (replace === true) {
       setMode(mode);
-      // console.log('HISTORY: ', history.slice(0,-1))
       setHistory(history => [...history.slice(0,-1), mode])
-      // console.log('HISTORY 3', history)
     } else {
       console.log('HERE')
       setMode(mode);
       setHistory(history => [...history, mode])
     }
-    // console.log('HISTORY: ', history)
+
   }
   
   function back() {
 
     if (history.length > 1) {
       setHistory([...history.slice(0,-1)])
-      // console.log('HISTORY 2', history)
       setMode(history[history.length-2])
     }
     

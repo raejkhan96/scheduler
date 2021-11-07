@@ -70,4 +70,46 @@ describe("Form", () => {
     /* 6. onSave is called with the correct arguments */
     expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", interviewers[0]);
   });
+
+  // Test coverage exercise
+  it("submits the name entered by the user", () => {
+    const onSave = jest.fn();
+    const { getByText, getByPlaceholderText } = render(
+      <Form interviewers={interviewers} onSave={onSave} interviewer={interviewers[0]} />
+    );
+
+    const input = getByPlaceholderText("Enter Student Name");
+    // console.log('INPUT', input);
+    fireEvent.change(input, {target: { value: "Lydia Miller-Jones"} });
+    fireEvent.click(getByText("Save"));
+
+    // expect(onSave).toHaveBeenCalledTimes(1);
+    expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", interviewers[0]);
+  });
+
+  it("can successfully save after trying to submit an empty student name", () => {
+    const onSave = jest.fn();
+    const { getByText, getByPlaceholderText, queryByText } = render(
+      <Form interviewers={interviewers} onSave={onSave} />
+    );
+
+    fireEvent.click(getByText("Save"));
+
+    expect(getByText(/student name cannot be blank/i)).toBeInTheDocument();
+    expect(onSave).not.toHaveBeenCalled();
+  
+    fireEvent.change(getByPlaceholderText("Enter Student Name"), {
+      target: { value: "Lydia Miller-Jones"}
+    });
+  
+    fireEvent.click(getByText("Save"));
+
+    expect(queryByText(/student name cannot be blank/i)).toBeNull();
+
+    expect(onSave).toHaveBeenCalledTimes(1);
+    expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", null);
+  
+  });
+
+ 
 });

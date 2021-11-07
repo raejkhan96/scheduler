@@ -65,7 +65,7 @@ export default function Appointment(props) {
       )} 
       {/*EMPTY MODE fills the calendar with the onAdd options */}
       {mode === ERROR_SAVE && <Error message={"Could not save appointment"} onClose= {back}  />}
-      {mode === ERROR_DELETE && <Error message={"Could not delete appointment"} onClose= {back} />}
+      {mode === ERROR_DELETE && <Error message={"Could not delete appointment"} onClose= {() => transition(SHOW)} />}
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === EDIT && <Form interviewers = {props.interviewers} name = {props.interview.student} interviewer = {props.interview.interviewer.id} onCancel = {back} onSave = { save }/> }
       {mode === DELETE_CONFIRM && <Confirm message={"Are you sure you would like to delete?"} onCancel={() => back()} onConfirm={() => cancel()}/>}

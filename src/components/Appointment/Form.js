@@ -28,6 +28,7 @@ export default function Form(props) {
     
     if (!interviewer && name === "") {
       setError("You missed interviewer selection and name")
+      // console.log()
       return
     } else if (!interviewer) {
       setError("You missed interviewer selection")
