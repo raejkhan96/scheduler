@@ -21,7 +21,8 @@ export default function DayListItem(props) {
   };
   console.log(props.name)
   return (
-    <li className={dayClass} onClick={() => props.setDay(props.name)}>
+    // for cypress testing, add prop: data-testid="day" on line 25
+    <li className={dayClass} onClick={() => props.setDay(props.name)} >
       <h2>{props.name}</h2>
       <h4>{formatSpots()}</h4>
     </li>
